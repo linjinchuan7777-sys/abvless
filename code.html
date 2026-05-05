@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#32302e",
+                        "on-secondary": "#3f2d14",
+                        "secondary": "#e0c29f",
+                        "surface-variant": "#363433",
+                        "tertiary-fixed": "#e8e1da",
+                        "error": "#ffb4ab",
+                        "tertiary": "#ccc6be",
+                        "surface-container-lowest": "#0f0e0d",
+                        "inverse-on-surface": "#31302f",
+                        "on-surface-variant": "#cdc5bd",
+                        "secondary-fixed-dim": "#e0c29f",
+                        "surface-container": "#201f1e",
+                        "on-error": "#690005",
+                        "primary": "#cac5c2",
+                        "surface-container-highest": "#363433",
+                        "on-background": "#e6e2df",
+                        "surface": "#141312",
+                        "on-tertiary": "#33302b",
+                        "primary-container": "#2c2a28",
+                        "tertiary-container": "#2d2a25",
+                        "secondary-container": "#5a452b",
+                        "surface-container-low": "#1c1b1a",
+                        "on-secondary-container": "#d1b492",
+                        "on-tertiary-container": "#96918a",
+                        "on-primary-container": "#95918e",
+                        "tertiary-fixed-dim": "#ccc6be",
+                        "inverse-primary": "#615e5b",
+                        "on-surface": "#e6e2df",
+                        "surface-container-high": "#2b2a29",
+                        "surface-dim": "#141312",
+                        "on-tertiary-fixed": "#1e1b17",
+                        "primary-fixed": "#e7e1de",
+                        "on-primary-fixed": "#1d1b19",
+                        "surface-tint": "#cac5c2",
+                        "primary-fixed-dim": "#cac5c2",
+                        "inverse-surface": "#e6e2df",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#494644",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#fdddb9",
+                        "outline": "#969088",
+                        "on-secondary-fixed": "#281803",
+                        "on-secondary-fixed-variant": "#584329",
+                        "outline-variant": "#4b4640",
+                        "on-tertiary-fixed-variant": "#4a4641",
+                        "surface-bright": "#3a3938",
+                        "background": "#141312"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-edge": "64px",
+                        "section-gap": "160px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Work Sans"],
+                        "headline-lg": ["Noto Serif"],
+                        "headline-md": ["Noto Serif"],
+                        "body-lg": ["Work Sans"],
+                        "headline-display": ["Noto Serif"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.8", "fontWeight": "400"}],
+                        "headline-display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        .scroll-indicator {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #8C7355, transparent);
+            animation: pulse-height 4s ease-in-out infinite;
+        }
+        @keyframes pulse-height {
+            0%, 100% { height: 40px; opacity: 0.3; }
+            50% { height: 80px; opacity: 0.8; }
+        }
+        .shoji-panel {
+            background: rgba(232, 225, 218, 0.05);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#1A1918]/90 backdrop-blur-md border-b border-stone-800/30">
+<nav class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-5xl mx-auto">
+<div class="text-xl font-light tracking-[0.3em] text-stone-200 mb-4 md:mb-0">一時無酉 abvless</div>
+<div class="flex items-center gap-8 md:gap-12 font-serif tracking-[0.2em] uppercase text-[10px] md:text-sm">
+<a class="text-stone-100 border-b border-stone-700 pb-1 hover:text-stone-300 transition-opacity duration-700 opacity-80 hover:opacity-100" href="#space">The Space</a>
+<a class="text-stone-500 hover:text-stone-300 transition-opacity duration-700 opacity-80 hover:opacity-100" href="#archive">Archive</a>
+<a class="text-stone-500 hover:text-stone-300 transition-opacity duration-700 opacity-80 hover:opacity-100" href="#offerings">Offerings</a>
+<a class="text-stone-500 hover:text-stone-300 transition-opacity duration-700 opacity-80 hover:opacity-100" href="#location">Location</a>
+</div>
+</nav>
+</header>
+<main class="text-center">
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Moody 1920s Japanese heritage house Taipei" class="w-full h-full object-cover opacity-40 scale-105 filter grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida/ADBb0uhttTwKeAioeQz9WIdCRu9qhA3njxNRLkWLfhGcE-dteNRqF7gJmP--vLBsi11f4hViuhiqYBTLLB8k6QRQpKgW7DDSyIyCxquIY4KbCrmUHuD2RXUNCdAY6taQRc6zJ4XAUmzgnq9e0fZnmUxlYw7fysgIBRWIQc8t2BEKt6UE_jMK7BM6AwM6h8FWQ4zQOzTmCtvaRgAcLdRG2kIITzQWtjTbIi5JJX0A7mfN-PyHZhTCUAICIytxH1Eq1wmhyMcePluruOJ_Ag"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background"></div>
+</div>
+<div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+<h1 class="font-headline-display text-on-surface mb-6 tracking-[0.5em] text-3xl md:text-5xl uppercase">一時無酉 abvless</h1>
+<p class="font-headline-md text-secondary italic opacity-80 max-w-2xl mx-auto">
+                A sanctuary of non-alcoholic spirits in a 1920s Japanese heritage site.
+            </p>
+<div class="mt-24 flex flex-col items-center gap-4">
+<span class="font-label-sm text-stone-500 uppercase tracking-[0.4em]">Scroll</span>
+<div class="scroll-indicator"></div>
+</div>
+</div>
+</section>
+<!-- The Space Section -->
+<section class="py-[160px] px-8 max-w-5xl mx-auto" id="space">
+<div class="flex flex-col items-center gap-16">
+<div class="max-w-2xl">
+<h2 class="font-headline-lg text-secondary mb-8">物哀：空間的記憶</h2>
+<p class="font-body-lg text-on-surface-variant mb-6 leading-relaxed">
+                    坐落於中山北路一段九十四號，這棟建於1920年代的日式建築，見證了臺北百年的更迭。空間保留了原本的「廢墟」感——剝落的牆皮、焦黑的木樑，以及那股在歲月中沉澱下的寂靜。
+                </p>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                    我們在這裡實踐 Wabi-sabi（侘寂）的美學：不追求圓滿，而是尊重事物的殘缺與無常。在光影婆娑間，無酒精的靈魂得以安置。
+                </p>
+</div>
+<div class="w-full relative p-unit border border-outline-variant/30 max-w-3xl">
+<img alt="Architectural wabi-sabi detail of wood and plaster" class="w-full aspect-[4/5] object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uhttTwKeAioeQz9WIdCRu9qhA3njxNRLkWLfhGcE-dteNRqF7gJmP--vLBsi11f4hViuhiqYBTLLB8k6QRQpKgW7DDSyIyCxquIY4KbCrmUHuD2RXUNCdAY6taQRc6zJ4XAUmzgnq9e0fZnmUxlYw7fysgIBRWIQc8t2BEKt6UE_jMK7BM6AwM6h8FWQ4zQOzTmCtvaRgAcLdRG2kIITzQWtjTbIi5JJX0A7mfN-PyHZhTCUAICIytxH1Eq1wmhyMcePluruOJ_Ag"/>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] shoji-panel p-6 border border-stone-800/50">
+<span class="font-label-sm text-secondary block mb-2 tracking-widest">ARCHITECTURAL HERITAGE</span>
+<p class="font-body-md text-on-surface-variant italic">「殘缺中的圓滿，是時間留下的最美痕跡。」</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Archive Menu Section -->
+<section class="py-[160px] bg-surface-container-lowest" id="archive">
+<div class="max-w-5xl mx-auto px-8">
+<div class="flex flex-col items-center mb-24">
+<h2 class="font-headline-display text-on-surface mb-4">Memories of the Menu</h2>
+<p class="font-serif italic text-secondary text-xl">回憶中的酒單：酒精之外的詩意</p>
+<div class="h-px bg-outline-variant/30 w-24 mt-8"></div>
+</div>
+<div class="grid grid-cols-1 gap-16 max-w-2xl mx-auto">
+<!-- Menu Item 1 -->
+<div class="group py-4 flex flex-col items-center">
+<span class="font-label-sm text-stone-600 block mb-4 tracking-[0.2em]">01. CLASSIC</span>
+<h3 class="font-headline-md text-on-surface mb-2 group-hover:text-secondary transition-colors">G&amp;T - The Ghost of Gin</h3>
+<p class="font-body-md text-on-surface-variant italic">杜松子、奎寧、森林的氣息。沒有酒精的辛辣，卻有著靈魂的重量。</p>
+<div class="h-[1px] w-0 group-hover:w-full bg-secondary/30 transition-all duration-700 mt-6"></div>
+</div>
+<!-- Menu Item 2 -->
+<div class="group py-4 flex flex-col items-center">
+<span class="font-label-sm text-stone-600 block mb-4 tracking-[0.2em]">02. SMOKED</span>
+<h3 class="font-headline-md text-on-surface mb-2 group-hover:text-secondary transition-colors">Smoked Earl Grey</h3>
+<p class="font-body-md text-on-surface-variant italic">煙燻伯爵茶、佛手柑、寂靜的午後。如同老屋樑上殘留的炭香。</p>
+<div class="h-[1px] w-0 group-hover:w-full bg-secondary/30 transition-all duration-700 mt-6"></div>
+</div>
+<!-- Menu Item 3 -->
+<div class="group py-4 flex flex-col items-center">
+<span class="font-label-sm text-stone-600 block mb-4 tracking-[0.2em]">03. BOTANICAL</span>
+<h3 class="font-headline-md text-on-surface mb-2 group-hover:text-secondary transition-colors">Yuzu No Alcohol</h3>
+<p class="font-body-md text-on-surface-variant italic">柚子、青檸、初晨的微光。清甜中帶著一絲不被察覺的苦澀。</p>
+<div class="h-[1px] w-0 group-hover:w-full bg-secondary/30 transition-all duration-700 mt-6"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location Section -->
+<section class="py-[160px] px-8 max-w-5xl mx-auto" id="location">
+<div class="flex flex-col items-center">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-on-surface mb-4">Where It Once Stood</h2>
+<p class="font-label-sm text-secondary tracking-[0.3em] uppercase">No. 94, Section 1, Zhongshan North Road, Taipei</p>
+</div>
+<div class="relative w-full max-w-3xl aspect-video bg-surface-container grayscale contrast-125 brightness-75 overflow-hidden border border-stone-800">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center z-10 p-8 md:p-12 shoji-panel border border-stone-700/50 max-w-xs mx-4">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">location_on</span>
+<h4 class="font-headline-md text-on-surface mb-2">中山北路一段 94 號</h4>
+<p class="font-body-md text-on-surface-variant italic text-sm mb-8">這座建築依然矗立，而回憶也將永存。</p>
+<a class="inline-block px-8 py-3 border border-secondary text-secondary font-label-sm uppercase hover:bg-secondary/10 transition-colors" href="https://maps.google.com/?q=No.+94,+Section+1,+Zhongshan+North+Road,+Taipei" target="_blank">Open in Maps</a>
+</div>
+<img alt="Minimalist dark mode map of Taipei district" class="w-full h-full object-cover opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5he_F_1uX4hIWYWoemTybPxoNUe0ty9bq-_hCN_TCbm91_8ClaobSlbrdFkJkSKIegL2hZGDY8iAHqtyfgmeW4KHXRQLfEwpFPwW6tFSFojVS6gvHpx1Vrc2ufR6r8q0jytgGcFRTA1g8xjL8pLq5rNCs7oxXFo5KO8nOb837c9S3otowV31MsHDrYW97f3-F8S3xslisixhTVF0li8BFgLvpF46psrIWuwG-E_jw4e0I6UhLvM8d0KNP6Md8ckGxOTNn_JY4NwY"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#1A1918] border-t border-stone-800/20 py-24 px-8 text-center">
+<div class="max-w-5xl mx-auto flex flex-col items-center gap-12">
+<div class="flex flex-col items-center gap-4">
+<div class="text-sm font-medium text-stone-400">© 一時無酉 abvless. A memory of Zhongshan District.</div>
+<div class="font-serif italic tracking-wider text-xs text-stone-500">
+                台北市中山區中山北路一段 94 號<br/>
+                info@abvless.com
+            </div>
+</div>
+<div class="flex gap-8 font-serif italic tracking-wider text-[10px] md:text-xs text-stone-600">
+<a class="hover:text-stone-400 transition-colors duration-1000" href="#">Instagram</a>
+<a class="hover:text-stone-400 transition-colors duration-1000" href="#">History</a>
+<a class="text-stone-300 underline underline-offset-4 hover:text-stone-400 transition-colors duration-1000" href="#">Contact</a>
+</div>
+<div class="mt-16 pt-8 border-t border-stone-800/10 w-full">
+<span class="font-label-sm text-stone-800 tracking-[0.5em] uppercase text-[10px]">A quiet documentation of what once was.</span>
+</div>
+</div>
+</footer>
+</body></html>
